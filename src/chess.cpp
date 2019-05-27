@@ -10,15 +10,15 @@ void Move(
 {
     int i1 = 9, i2 = 9, j1 = 0, j2 = 0;
     string step;
-    cout << endl << "";
+    cout << endl << "Input your move: ";
     getline(cin, step);
     if (step == "exit") {
-        cout << "";
+        cout << "Exit the programm";
         exit(0);
     }
 
     if (step.length() != 5) {
-        cout << "";
+        cout << "\n ERROR: Invalid input \n \n";
         return;
     }
     switch (step[0]) {
@@ -47,7 +47,7 @@ void Move(
         j1 = 8;
         break;
     default:
-        cout << "";
+        cout << "\n ERROR: Invalid input \n \n";
         return;
     }
     switch (step[1]) {
@@ -76,11 +76,11 @@ void Move(
         i1 = 0;
         break;
     default:
-        cout << "";
+        cout << "\n ERROR: Invalid input \n \n";
         return;
     }
     if (step[2] != '-') {
-        cout << "";
+        cout << "\n ERROR: Invalid input \n \n";
         return;
     }
     switch (step[3]) {
@@ -109,7 +109,7 @@ void Move(
         j2 = 8;
         break;
     default:
-        cout << "";
+        cout << "\n ERROR: Invalid input \n \n";
         return;
     }
     switch (step[4]) {
@@ -138,7 +138,7 @@ void Move(
         i2 = 0;
         break;
     default:
-        cout << "";
+        cout << "\n ERROR: Invalid input \n \n";
         return;
     }
 
@@ -149,7 +149,7 @@ void Move(
     int d = MoveCheck(*team, i1, i2, j1, j2, pole);
     if (d == 1) {
         if ((pole[i2][j2] == 'k') || (pole[i2][j2] == 'K')) {
-            cout << "";
+            cout << "\n You win!";
             exit(0);
         }
         if (pole[i2][j2] != ' ')
@@ -169,7 +169,7 @@ void Move(
             if ((pole[i2][j2] == 'P') && (i2 == 0)) {
                 char transform = ' ';
                 while (transform == ' ') {
-                    cout << endl << "";
+                    cout << endl << "Transform your pawn: ";
                     cin >> transform;
                     if ((transform != 'R') && (transform != 'N')
                         && (transform != 'B') && (transform != 'Q')) {
@@ -183,7 +183,7 @@ void Move(
             if ((pole[i2][j2] == 'p') && (i2 == 7)) {
                 char transform = ' ';
                 while (transform == ' ') {
-                    cout << endl << "";
+                    cout << endl << "Transform your pawn: ";
                     cin >> transform;
                     if ((transform != 'r') && (transform != 'n')
                         && (transform != 'b') && (transform != 'q')) {
@@ -204,15 +204,15 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
 {
     int d = 0;
     if ((i1 == i2) && (j1 == j2)) {
-        cout << "";
+        cout << "\n ERROR: You didn't move the figure' \n \n";
         return 0;
     }
-    // cout << team;
+    cout << team;
     switch (team) {
     case 0:
         switch (pole[i1][j1]) {
         case ' ':
-            cout << "";
+            cout << "\n ERROR: You don't have the figure on the position \n \n";
             return 0;
 
         case 'P':
@@ -224,7 +224,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                     if (pole[i2 + 1][j2] == ' ') {
                         d = 1;
                     } else {
-                        cout << "";
+                        cout << "\n ERROR: Pawn can't reach the position "
+                                "through the "
+                                "figure \n \n";
                         return 0;
                     }
                 }
@@ -240,7 +242,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                     if (i1 > i2) {
                         for (int i = i1 - 1; i > i2; i--) {
                             if (pole[i][j1] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Rook can't reach the "
+                                        "position through the "
+                                        "figure' \n \n";
                                 return 0;
                             }
                         }
@@ -249,7 +253,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                     if (i1 < i2) {
                         for (int i = i2 - 1; i > i1; i--) {
                             if (pole[i][j1] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Rook can't reach the "
+                                        "position through the "
+                                        "figure' \n \n";
                                 return 0;
                             }
                         }
@@ -260,7 +266,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                     if (j1 > j2) {
                         for (int i = j1 - 1; i > j2; i--) {
                             if (pole[i1][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Rook can't reach the "
+                                        "position through the "
+                                        "figure' \n \n";
                                 return 0;
                             }
                         }
@@ -269,7 +277,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                     if (j1 < j2) {
                         for (int i = j2 - 1; i > j1; i--) {
                             if (pole[i1][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Rook can't reach the "
+                                        "position through the "
+                                        "figure' \n \n";
                                 return 0;
                             }
                         }
@@ -301,7 +311,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                         for (int i = j1 - 1, v = i1 - 1; i > j2 && v > i2;
                              i--, v--) {
                             if (pole[v][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Bishop can't reach the "
+                                        "position through the "
+                                        "figure' \n \n";
                                 return 0;
                             }
                         }
@@ -313,7 +325,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                         for (int i = j1 - 1, v = i1 + 1; i > j2 && v < i2;
                              i--, v++) {
                             if (pole[v][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Bishop can't reach the "
+                                        "position through the "
+                                        "figure' \n \n";
                                 return 0;
                             }
                         }
@@ -325,7 +339,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                         for (int i = j1 + 1, v = i1 - 1; i < j2 && v > i2;
                              i++, v--) {
                             if (pole[v][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Bishop can't reach the "
+                                        "position through the "
+                                        "figure' \n \n";
                                 return 0;
                             }
                         }
@@ -337,7 +353,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                         for (int i = j1 + 1, v = i1 + 1; i < j2 && v < i2;
                              i++, v++) {
                             if (pole[v][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Bishop can't reach the "
+                                        "position through the "
+                                        "figure' \n \n";
                                 return 0;
                             }
                         }
@@ -354,7 +372,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                     if (i1 > i2) {
                         for (int i = i1 - 1; i > i2; i--) {
                             if (pole[i][j1] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Queen can't reach the "
+                                        "position through the "
+                                        "figure \n \n";
                                 return 0;
                             }
                         }
@@ -363,7 +383,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                     if (i1 < i2) {
                         for (int i = i2 - 1; i > i1; i--) {
                             if (pole[i][j1] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Queen can't reach the "
+                                        "position through the "
+                                        "figure \n \n";
                                 return 0;
                             }
                         }
@@ -374,7 +396,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                     if (j1 > j2) {
                         for (int i = j1 - 1; i > j2; i--) {
                             if (pole[i1][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Queen can't reach the "
+                                        "position through the "
+                                        "figure \n \n";
                                 return 0;
                             }
                         }
@@ -383,7 +407,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                     if (j1 < j2) {
                         for (int i = j2 - 1; i > j1; i--) {
                             if (pole[i1][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Queen can't reach the "
+                                        "position through the "
+                                        "figure \n \n";
                                 return 0;
                             }
                         }
@@ -396,7 +422,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                         for (int i = j1 - 1, v = i1 - 1; i > j2 && v > i2;
                              i--, v--) {
                             if (pole[v][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Queen can't reach the "
+                                        "position through the "
+                                        "figure \n \n";
                                 return 0;
                             }
                         }
@@ -408,7 +436,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                         for (int i = j1 - 1, v = i1 + 1; i > j2 && v < i2;
                              i--, v++) {
                             if (pole[v][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Queen can't reach the "
+                                        "position through the "
+                                        "figure \n \n";
                                 return 0;
                             }
                         }
@@ -420,7 +450,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                         for (int i = j1 + 1, v = i1 - 1; i < j2 && v > i2;
                              i++, v--) {
                             if (pole[v][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Queen can't reach the "
+                                        "position through the "
+                                        "figure \n \n";
                                 return 0;
                             }
                         }
@@ -432,7 +464,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                         for (int i = j1 + 1, v = i1 + 1; i < j2 && v < i2;
                              i++, v++) {
                             if (pole[v][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Queen can't reach the "
+                                        "position through the "
+                                        "figure \n \n";
                                 return 0;
                             }
                         }
@@ -453,7 +487,7 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                         && (AttackArea(team, 5, i2, j2, pole) == 1)) {
                         d = 1;
                     } else {
-                        cout << "";
+                        cout << "\n ERROR: Position is under attack \n \n";
                         return 0;
                     }
                 }
@@ -461,7 +495,7 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
             break;
 
         default:
-            cout << "";
+            cout << "\n ERROR: Wrong side \n\n";
             break;
         }
         break;
@@ -469,7 +503,7 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
     case 1:
         switch (pole[i1][j1]) {
         case ' ':
-            cout << "";
+            cout << "\n ERROR: You don't have the figure on the position \n \n";
             return 0;
 
         case 'p':
@@ -481,7 +515,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                     if (pole[i2 - 1][j2] == ' ') {
                         d = 1;
                     } else {
-                        cout << "";
+                        cout << "\n ERROR: Pawn can't reach the position "
+                                "through the "
+                                "figure \n \n";
                         return 0;
                     }
                 }
@@ -497,7 +533,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                     if (i1 > i2) {
                         for (int i = i1 - 1; i > i2; i--) {
                             if (pole[i][j1] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Rook can't reach the "
+                                        "position through the "
+                                        "figure' \n \n";
                                 return 0;
                             }
                         }
@@ -506,7 +544,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                     if (i1 < i2) {
                         for (int i = i2 - 1; i > i1; i--) {
                             if (pole[i][j1] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Rook can't reach the "
+                                        "position through the "
+                                        "figure' \n \n";
                                 return 0;
                             }
                         }
@@ -517,7 +557,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                     if (j1 > j2) {
                         for (int i = j1 - 1; i > j2; i--) {
                             if (pole[i1][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Rook can't reach the "
+                                        "position through the "
+                                        "figure' \n \n";
                                 return 0;
                             }
                         }
@@ -526,7 +568,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                     if (j1 < j2) {
                         for (int i = j2 - 1; i > j1; i--) {
                             if (pole[i1][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Rook can't reach the "
+                                        "position through the "
+                                        "figure' \n \n";
                                 return 0;
                             }
                         }
@@ -558,7 +602,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                         for (int i = j1 - 1, v = i1 - 1; i > j2 && v > i2;
                              i--, v--) {
                             if (pole[v][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Bishop can't reach the "
+                                        "position through the "
+                                        "figure' \n \n";
                                 return 0;
                             }
                         }
@@ -570,7 +616,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                         for (int i = j1 - 1, v = i1 + 1; i > j2 && v < i2;
                              i--, v++) {
                             if (pole[v][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Bishop can't reach the "
+                                        "position through the "
+                                        "figure' \n \n";
                                 return 0;
                             }
                         }
@@ -582,7 +630,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                         for (int i = j1 + 1, v = i1 - 1; i < j2 && v > i2;
                              i++, v--) {
                             if (pole[v][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Bishop can't reach the "
+                                        "position through the "
+                                        "figure' \n \n";
                                 return 0;
                             }
                         }
@@ -594,7 +644,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                         for (int i = j1 + 1, v = i1 + 1; i < j2 && v < i2;
                              i++, v++) {
                             if (pole[v][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Bishop can't reach the "
+                                        "position through the "
+                                        "figure' \n \n";
                                 return 0;
                             }
                         }
@@ -611,7 +663,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                     if (i1 > i2) {
                         for (int i = i1 - 1; i > i2; i--) {
                             if (pole[i][j1] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Queen can't reach the "
+                                        "position through the "
+                                        "figure \n \n";
                                 return 0;
                             }
                         }
@@ -620,7 +674,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                     if (i1 < i2) {
                         for (int i = i2 - 1; i > i1; i--) {
                             if (pole[i][j1] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Queen can't reach the "
+                                        "position through the "
+                                        "figure \n \n";
                                 return 0;
                             }
                         }
@@ -631,7 +687,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                     if (j1 > j2) {
                         for (int i = j1 - 1; i > j2; i--) {
                             if (pole[i1][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Queen can't reach the "
+                                        "position through the "
+                                        "figure \n \n";
                                 return 0;
                             }
                         }
@@ -640,7 +698,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                     if (j1 < j2) {
                         for (int i = j2 - 1; i > j1; i--) {
                             if (pole[i1][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Queen can't reach the "
+                                        "position through the "
+                                        "figure \n \n";
                                 return 0;
                             }
                         }
@@ -653,7 +713,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                         for (int i = j1 - 1, v = i1 - 1; i > j2 && v > i2;
                              i--, v--) {
                             if (pole[v][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Queen can't reach the "
+                                        "position through the "
+                                        "figure \n \n";
                                 return 0;
                             }
                         }
@@ -665,7 +727,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                         for (int i = j1 - 1, v = i1 + 1; i > j2 && v < i2;
                              i--, v++) {
                             if (pole[v][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Queen can't reach the "
+                                        "position through the "
+                                        "figure \n \n";
                                 return 0;
                             }
                         }
@@ -677,7 +741,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                         for (int i = j1 + 1, v = i1 - 1; i < j2 && v > i2;
                              i++, v--) {
                             if (pole[v][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Queen can't reach the "
+                                        "position through the "
+                                        "figure \n \n";
                                 return 0;
                             }
                         }
@@ -689,7 +755,9 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                         for (int i = j1 + 1, v = i1 + 1; i < j2 && v < i2;
                              i++, v++) {
                             if (pole[v][i] != ' ') {
-                                cout << "";
+                                cout << "\n ERROR: Queen can't reach the "
+                                        "position through the "
+                                        "figure \n \n";
                                 return 0;
                             }
                         }
@@ -710,14 +778,14 @@ int MoveCheck(int team, int i1, int i2, int j1, int j2, char pole[][9])
                         && (AttackArea(team, 5, i2, j2, pole) == 1)) {
                         d = 1;
                     } else {
-                        cout << "";
+                        cout << "\n ERROR: Position is under attack \n \n";
                         return 0;
                     }
                 }
             }
             break;
         default:
-            cout << "";
+            cout << "\n ERROR: Wrong side \n\n";
             break;
         }
         break;
@@ -968,7 +1036,8 @@ int FriendlyFire(int side, int i2, int j2, char pole[][9])
         if ((pole[i2][j2] == 'P') || (pole[i2][j2] == 'R')
             || (pole[i2][j2] == 'N') || (pole[i2][j2] == 'B')
             || (pole[i2][j2] == 'Q') || (pole[i2][j2] == 'K')) {
-            cout << "";
+            cout << "\n ERROR: You can't move your figure on your figures \n "
+                    "\n";
             d = 0;
         }
         break;
@@ -976,7 +1045,8 @@ int FriendlyFire(int side, int i2, int j2, char pole[][9])
         if ((pole[i2][j2] == 'p') || (pole[i2][j2] == 'r')
             || (pole[i2][j2] == 'n') || (pole[i2][j2] == 'b')
             || (pole[i2][j2] == 'q') || (pole[i2][j2] == 'k')) {
-            cout << "";
+            cout << "\n ERROR: You can't move your figure on your figures \n "
+                    "\n";
             d = 0;
         }
         break;
