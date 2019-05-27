@@ -3,6 +3,7 @@ DIR_BUILD = ./build
 DIR_SRC = ./src
 DIR_TEST = ./build/test
 DIR_T = ./test
+
 .PHONY: clean all test run
 
 all: $(DIR_BIN)/main $(DIR_BIN)/testing test
