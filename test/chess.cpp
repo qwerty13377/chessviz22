@@ -1,4 +1,4 @@
-//#include "../src/chess0.h"
+#include "../src/chess1.h"
 
 int test1()
 {
